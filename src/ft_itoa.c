@@ -3,56 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/17 10:17:31 by pauljull          #+#    #+#             */
-/*   Updated: 2018/12/04 22:20:44 by pauljull         ###   ########.fr       */
+/*   Created: 2019/11/06 12:58:58 by darbib            #+#    #+#             */
+/*   Updated: 2019/12/09 16:20:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "../includes/libft.h"
 
-static int			abs_value(int n)
+char	*ft_itoa(int n)
 {
-	if (n < 0)
-		return (-n);
-	return (n);
-}
-
-static unsigned int	digit_count(int n)
-{
-	unsigned int	count;
-
-	count = 0;
-	while ((n / 10) != 0)
-	{
-		count += 1;
-		n /= 10;
-	}
-	return (count + 1);
-}
-
-char				*ft_itoa(int n)
-{
-	char			*str;
-	char			sign;
-	int				count;
+	char	s_nb[12];
+	char	sign;
+	size_t	i;
+	char	tmp;
 
 	sign = 0;
-	count = digit_count(n);
 	if (n < 0)
-		sign += 1;
-	if (!(str = (char*)malloc(sizeof(char) * (count + sign + 1))))
-		return (NULL);
-	str[count + sign] = 0;
-	if (n < 0)
-		str[0] = '-';
-	while (count > 0)
+		sign = 1;
+	s_nb[11] = 0;
+	i = 10;
+	if (n == 0)
+		s_nb[i--] = '0';
+	while ((n >= 1 && n > 0) || (n <= -1 && n < 0))
 	{
-		str[count + sign - 1] = abs_value(n % 10) + '0';
-		count -= 1;
+		tmp = n % 10;
+		if (tmp < 0)
+			tmp = tmp * -1;
+		s_nb[i] = tmp + '0';
 		n /= 10;
+		i--;
 	}
-	return (str);
+	if (sign)
+		s_nb[i--] = '-';
+	return (ft_strdup(s_nb + i + 1));
 }

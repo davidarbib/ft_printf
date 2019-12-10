@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/24 11:50:18 by darbib            #+#    #+#             */
-/*   Updated: 2019/05/24 12:06:07 by darbib           ###   ########.fr       */
+/*   Created: 2019/11/04 10:48:17 by darbib            #+#    #+#             */
+/*   Updated: 2019/11/14 18:30:59 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
+#include "libft.h"
 
-char	*ft_strndup(const char *s, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	index;
-	char			*str;
-	size_t			len;
+	char	*sub_s;
+	size_t	n;
+	size_t	i;
 
-	index = 0;
-	len = ft_strlen(s);
-	if (n > len)
-		n = len;
-	if (!(str = (char *)malloc(sizeof(char) * (n + 1))))
+	if (!(sub_s = ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
-	while (index < n)
+	n = ft_strlen(s);
+	i = 0;
+	while (i < len && start < n)
 	{
-		str[index] = s[index];
-		index += 1;
+		sub_s[i] = s[start];
+		start++;
+		i++;
 	}
-	str[index] = 0;
-	return (str);
+	sub_s[i] = 0;
+	return (sub_s);
 }

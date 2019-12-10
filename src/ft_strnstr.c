@@ -3,38 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 17:18:12 by pauljull          #+#    #+#             */
-/*   Updated: 2018/11/26 17:00:51 by pauljull         ###   ########.fr       */
+/*   Created: 2019/11/05 17:07:53 by darbib            #+#    #+#             */
+/*   Updated: 2019/11/07 11:34:22 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	index;
-	size_t	n_index;
-	char	*h_buff;
-	char	*n_buff;
+	size_t	i;
+	size_t	j;
 
-	index = 0;
-	n_index = 0;
-	h_buff = (char *)haystack;
-	n_buff = (char *)needle;
-	if (*n_buff == '\0')
-		return (h_buff);
-	while (index < len && *h_buff)
+	if (!(*needle))
+		return ((char *)haystack);
+	i = 0;
+	while (haystack[i] && i < len)
 	{
-		while (h_buff[n_index] == n_buff[n_index] &&
-			(index + n_index) < len && n_buff[n_index] != 0)
-			n_index += 1;
-		if (n_buff[n_index] == 0)
-			return (h_buff);
-		n_index = 0;
-		h_buff += 1;
-		index += 1;
+		j = 0;
+		while (haystack[i + j]
+				&& (unsigned char)needle[j] == (unsigned char)haystack[i + j]
+				&& (i + j) < len)
+			j++;
+		if (!(needle[j]))
+			return ((char *)haystack + i);
+		i++;
 	}
 	return (NULL);
 }

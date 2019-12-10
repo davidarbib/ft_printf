@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 13:03:13 by pauljull          #+#    #+#             */
-/*   Updated: 2019/01/02 20:36:11 by pauljull         ###   ########.fr       */
+/*   Created: 2019/12/03 16:26:40 by darbib            #+#    #+#             */
+/*   Updated: 2019/12/09 16:28:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
+#include <unistd.h>
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+void	buf_flush(t_buf *buf)
 {
-	size_t	index;
+	write(STDOUT, buf->s, buf->i);
+	ft_bzero(buf->s, BUF_SIZE);
+	buf->count += buf->i;
+	buf->i = 0;
+}
 
-	index = 0;
-	while (index < len && src[index] != 0)
-	{
-		dst[index] = src[index];
-		index += 1;
-	}
-	while (index < len)
-		dst[index++] = 0;
-	return (dst);
+void	init_buf(t_buf *buf)
+{
+	ft_bzero(buf->s, BUF_SIZE);
+	buf->count = 0;
+	buf->i = 0;
 }

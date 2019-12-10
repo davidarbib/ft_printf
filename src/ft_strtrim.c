@@ -3,59 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/15 16:25:45 by pauljull          #+#    #+#             */
-/*   Updated: 2018/11/26 16:05:28 by pauljull         ###   ########.fr       */
+/*   Created: 2019/11/05 22:28:06 by darbib            #+#    #+#             */
+/*   Updated: 2019/11/14 18:30:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-static unsigned int		ft_is_over(char const *str)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	unsigned int	index;
+	unsigned int	start;
+	unsigned int	end;
+	char			*s_out;
 
-	index = 0;
-	while (str[index] != '\0')
-	{
-		if (str[index] != ' ' && str[index] != '\n' && str[index] != '\t')
-			return (1);
-		index += 1;
-	}
-	return (0);
-}
-
-static unsigned int		real_length(char const *str)
-{
-	unsigned int	index;
-
-	index = 0;
-	while (((str[index] != ' ' && str[index] != '\n' && str[index] != '\t') ||
-	((str[index] == ' ' || str[index] == '\n' || str[index] == '\t') &&
-	(ft_is_over(str + index + 1)))) && str[index] != '\0')
-		index += 1;
-	return (index);
-}
-
-char					*ft_strtrim(char const *s)
-{
-	char			*str;
-	unsigned int	count;
-	unsigned int	r_len;
-
-	count = 0;
-	if (!s)
+	start = 0;
+	end = ft_strlen(s1) - 1;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	while (end > start && ft_strchr(set, s1[end]))
+		end--;
+	if (start == end)
+		return (ft_strdup(""));
+	if (!(s_out = ft_substr(s1, start, end - start + 1)))
 		return (NULL);
-	while ((*s == ' ' || *s == '\n' || *s == '\t') && *s != '\0')
-		s += 1;
-	r_len = real_length(s);
-	if (!(str = ft_strnew(r_len)))
-		return (NULL);
-	while (count < r_len)
-	{
-		str[count] = *(s + count);
-		count += 1;
-	}
-	return (str);
+	return (s_out);
 }

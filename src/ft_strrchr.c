@@ -3,31 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 15:33:03 by pauljull          #+#    #+#             */
-/*   Updated: 2019/01/02 20:37:44 by pauljull         ###   ########.fr       */
+/*   Created: 2019/11/05 11:30:45 by darbib            #+#    #+#             */
+/*   Updated: 2019/11/14 18:36:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t			index;
-	unsigned char	c_buff;
-	char			*s_buff;
+	char *s_out;
 
-	index = ft_strlen(s);
-	c_buff = (unsigned char)c;
-	s_buff = (char *)s;
-	while (index > 0)
-	{
-		if (s[index] == c_buff)
-			return (&s_buff[index]);
-		index -= 1;
-	}
-	if (s[index] == c_buff)
-		return (&s_buff[index]);
+	s_out = (char *)s + ft_strlen(s);
+	while (s_out != s && *s_out != (unsigned char)c)
+		s_out--;
+	if (*s_out == (unsigned char)c)
+		return (s_out);
 	return (NULL);
 }

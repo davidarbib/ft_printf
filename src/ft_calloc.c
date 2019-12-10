@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 12:52:19 by pauljull          #+#    #+#             */
-/*   Updated: 2019/04/10 14:02:41 by pauljull         ###   ########.fr       */
+/*   Created: 2019/12/03 14:15:21 by darbib            #+#    #+#             */
+/*   Updated: 2019/12/09 16:20:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
+#include "../includes/libft.h"
 
-char	*ft_strcpy(char *dst, const char *src)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	index;
+	void *mem;
 
-	index = 0;
-	while (src[index] != 0)
+	if (!count || !size)
 	{
-		dst[index] = src[index];
-		index += 1;
+		count = 1;
+		size = 1;
 	}
-	return (dst);
+	if (!(mem = malloc(count * size)))
+		return (NULL);
+	ft_bzero(mem, count * size);
+	return (mem);
 }

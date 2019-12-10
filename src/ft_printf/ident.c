@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ident.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 10:33:16 by pauljull          #+#    #+#             */
-/*   Updated: 2018/12/16 18:23:59 by pauljull         ###   ########.fr       */
+/*   Created: 2019/12/03 15:18:24 by darbib            #+#    #+#             */
+/*   Updated: 2019/12/09 16:40:40 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
-#include <unistd.h>
 
-void	ft_putstr(char const *s)
+int		is_my_option(char c)
 {
-	size_t	count;
+	char	*s;
+	char	*p_s;
 
-	if (!s)
-		return ;
-	count = ft_strlen(s);
-	write(1, s, count);
+	s = OPTS_MY;
+	if ((p_s = ft_strchr(s, c)))
+		return (p_s - s);
+	return (-1);
+}
+
+char	is_true_option(char c)
+{
+	if (ft_strchr(OPTS_TRUE, c))
+		return (1);
+	return (0);
 }

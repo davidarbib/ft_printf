@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   tolower.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/19 16:41:41 by pauljull          #+#    #+#             */
-/*   Updated: 2018/11/19 16:42:45 by pauljull         ###   ########.fr       */
+/*   Created: 2019/11/04 17:42:07 by darbib            #+#    #+#             */
+/*   Updated: 2019/11/07 13:24:23 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_tolower(int c)
+int		ft_tolower(int c)
 {
-	if (c >= 'A' && c <= 'Z')
-		c += 'a' - 'A';
+	if ((unsigned char)c >= 'A' && (unsigned char)c <= 'Z')
+		return (c + 32);
 	return (c);
 }
