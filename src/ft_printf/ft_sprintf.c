@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 20:47:08 by darbib            #+#    #+#             */
-/*   Updated: 2019/12/10 11:28:37 by darbib           ###   ########.fr       */
+/*   Updated: 2019/12/10 22:26:19 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,4 @@ int			ft_sprintf(char *buf_out, const char *format, ...)
 	sbuf_flush(&buf, buf_out);
 	va_end(args);
 	return (buf.count);
-}
-
-int main()
-{
-	//printf(NULL);
-	//ft_printf("hi i love coding and you ?");
-	//ft_printf("%10.0dun test\n");
-	char *str2 = calloc(BUFOUT_SIZE, sizeof(char));
-
-	printf("ret : %d\n", sprintf(str2, "cestuntest\n"));
-	printf("ret : %d\n", sprintf(str2, "ok\n"));
-	printf("%s\n", str2);
-	return (0);
 }

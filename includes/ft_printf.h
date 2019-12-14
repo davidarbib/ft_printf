@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 18:01:05 by darbib            #+#    #+#             */
-/*   Updated: 2019/12/07 19:42:13 by darbib           ###   ########.fr       */
+/*   Updated: 2019/12/13 16:38:34 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define STDOUT		1
 
 # define CONV_S		"cspdiuxX"
+# define CONV_NB	8
 # define OPTS_TRUE	".-0+#* "
 # define OPTS_MY	"-0"
 # define OPTIONS_NB	2
@@ -46,9 +47,10 @@ typedef struct	s_buf
 
 typedef struct	s_conv
 {
-	int lmc;	
-	int prec;
-	int flags : OPTIONS_NB;
+	int		lmc;	
+	int		prec;
+	char	*size;
+	int		flags : OPTIONS_NB;
 }				t_conv;
 
 
@@ -59,5 +61,12 @@ void	init_buf(t_buf *buf);
 void	buf_flush(t_buf *buf);
 void 	conv_parse(const char **format, va_list args, t_conv *current_conv);
 int		atoi_spe(const char **str);
-
+int		c_convert(t_buf *buf, t_conv *conv, va_list args); 
+int		s_convert(t_buf *buf, t_conv *conv, va_list args); 
+int		p_convert(t_buf *buf, t_conv *conv, va_list args); 
+int		d_convert(t_buf *buf, t_conv *conv, va_list args); 
+int		i_convert(t_buf *buf, t_conv *conv, va_list args); 
+int		u_convert(t_buf *buf, t_conv *conv, va_list args); 
+int		x_convert(t_buf *buf, t_conv *conv, va_list args); 
+int		bigx_convert(t_buf *buf, t_conv *conv, va_list args); 
 #endif

@@ -1,0 +1,43 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BUFOUT_SIZE	include/ft_sprintf.h	/^# define BUFOUT_SIZE	/;"	d
+BUF_SIZE	include/ft_printf.h	/^# define BUF_SIZE	/;"	d
+CONV_S	include/ft_printf.h	/^# define CONV_S	/;"	d
+FT_PRINTF_H	include/ft_printf.h	/^# define FT_PRINTF_H$/;"	d
+FT_SPRINTF_H	include/ft_sprintf.h	/^# define FT_SPRINTF_H$/;"	d
+LOWERHEX	include/ft_printf.h	/^# define LOWERHEX	/;"	d
+MINUS	include/ft_printf.h	/^# define MINUS	/;"	d
+OPTIONS_NB	include/ft_printf.h	/^# define OPTIONS_NB	/;"	d
+OPTS_MY	include/ft_printf.h	/^# define OPTS_MY	/;"	d
+OPTS_TRUE	include/ft_printf.h	/^# define OPTS_TRUE	/;"	d
+STDOUT	include/ft_printf.h	/^# define STDOUT	/;"	d
+UPPERHEX	include/ft_printf.h	/^# define UPPERHEX	/;"	d
+ZERO	include/ft_printf.h	/^# define ZERO	/;"	d
+atoi_spe	src/utils.c	/^int		atoi_spe(const char **str)$/;"	f
+buf_flush	src/buffer.c	/^void	buf_flush(t_buf *buf)$/;"	f
+conv_parse	src/conversion.c	/^void conv_parse(const char **format, va_list args, t_conv *current_conv)$/;"	f
+count	include/ft_printf.h	/^	size_t	count;$/;"	m	struct:s_buf
+flags	include/ft_printf.h	/^	int flags : OPTIONS_NB;$/;"	m	struct:s_conv
+ft_itoa_base	src/utils.c	/^char		*ft_itoa_base(int n, int base)$/;"	f
+ft_printf	src/ft_printf.c	/^int			ft_printf(const char *format, ...)$/;"	f
+ft_sprintf	src/ft_sprintf.c	/^int			ft_sprintf(char *buf_out, const char *format, ...)$/;"	f
+i	include/ft_printf.h	/^	size_t	i;$/;"	m	struct:s_buf
+init_buf	src/buffer.c	/^void	init_buf(t_buf *buf)$/;"	f
+init_conv	src/conversion.c	/^static void init_conv(t_conv *conv)$/;"	f	file:
+is_my_option	src/ident.c	/^int		is_my_option(char c)$/;"	f
+is_true_option	src/ident.c	/^char	is_true_option(char c)$/;"	f
+lmc	include/ft_printf.h	/^	int lmc;	$/;"	m	struct:s_conv
+main	src/ft_sprintf.c	/^int main()$/;"	f
+prec	include/ft_printf.h	/^	int prec;$/;"	m	struct:s_conv
+print_digits	src/utils.c	/^static void	print_digits(int n, int base, size_t *i, char *s_nb)$/;"	f	file:
+s	include/ft_printf.h	/^	char	s[BUF_SIZE];$/;"	m	struct:s_buf
+s_buf	include/ft_printf.h	/^typedef struct	s_buf$/;"	s
+s_conv	include/ft_printf.h	/^typedef struct	s_conv$/;"	s
+sbuf_flush	src/sbuffer.c	/^void	sbuf_flush(t_buf *buf, char *buf_out)$/;"	f
+sinit_buf	src/sbuffer.c	/^void	sinit_buf(t_buf *buf, char *buf_out)$/;"	f
+t_buf	include/ft_printf.h	/^}				t_buf;$/;"	t	typeref:struct:s_buf
+t_conv	include/ft_printf.h	/^}				t_conv;$/;"	t	typeref:struct:s_conv
