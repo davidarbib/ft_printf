@@ -18,11 +18,11 @@
 
 # define LOWERHEX	"0123456789abcdef"
 # define UPPERHEX	"0123456789ABCDEF"
-# define BUF_SIZE	101
+# define BUF_SIZE	4096
 # define STDOUT		1
 
-# define CONV_S		"cspdiuxX"
-# define CONV_NB	8
+# define CONV_S		"cspdiuxX%"
+# define CONV_NB	9
 # define OPTS_TRUE	".-0+#* "
 # define OPTS_MY	"-0"
 # define OPTIONS_NB	2
@@ -50,7 +50,7 @@ typedef struct	s_conv
 	int		lmc;	
 	int		prec;
 	char	*size;
-	int		flags : OPTIONS_NB;
+	int		flags;
 }				t_conv;
 
 
@@ -69,4 +69,5 @@ int		i_convert(t_buf *buf, t_conv *conv, va_list args);
 int		u_convert(t_buf *buf, t_conv *conv, va_list args); 
 int		x_convert(t_buf *buf, t_conv *conv, va_list args); 
 int		bigx_convert(t_buf *buf, t_conv *conv, va_list args); 
+int		no_convert(t_buf *buf, t_conv *conv, char c);
 #endif

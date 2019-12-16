@@ -33,6 +33,7 @@ static void		init_g_convert()
 	g_convert[(int)'u'] = u_convert; 
 	g_convert[(int)'x'] = x_convert; 
 	g_convert[(int)'X'] = bigx_convert; 
+	g_convert[(int)'%'] = pct_convert; 
 }
 
 static char		*conv_size(const char **format)
@@ -105,7 +106,7 @@ int				conv_make(const char **format, va_list args, t_conv *conv,
 			return (-1);
 	}
 	else
-	{
-	}
+		no_convert(buf, conv, **format);
+	*format++;
 	return (0);
 }
