@@ -6,13 +6,13 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2019/12/10 11:29:27 by darbib           ###   ########.fr        #
+#    Updated: 2020/01/04 15:14:32 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -g3 -Wall -Wextra -Werror 
 
 # ------------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ SRC = ft_atoi.c \
 	ft_memmove.c \
 	ft_memset.c \
 	ft_putchar_fd.c \
-	ft_putendl_fd.c \
+	ft_putendl_fd.c	\
 	ft_putnbr_fd.c \
 	ft_putstr_fd.c \
 	ft_split.c \
@@ -61,9 +61,12 @@ SRC = ft_atoi.c \
 	sbuffer.c \
 	conversion.c \
 	ident.c \
-	utils.c 
-PRINTF_DIR = ft_printf
+	utils.c \
+	sutils.c \
+	c_convert.c \
+	s_convert.c
 
+PRINTF_DIR = ft_printf
 
 # ------------------------------------------------------------------------------
 

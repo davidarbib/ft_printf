@@ -6,11 +6,22 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 22:27:42 by darbib            #+#    #+#             */
-/*   Updated: 2019/12/09 16:41:25 by darbib           ###   ########.fr       */
+/*   Updated: 2019/12/17 21:09:20 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
+
+void 		fill_buffer(t_buf *buf, size_t nb, char c)
+{
+	while (nb > 0)
+	{
+		buf->s[buf->i++] = c;
+		check_full(buf);
+		nb--;
+	}
+}
 
 static void	print_digits(int n, int base, size_t *i, char *s_nb)
 {

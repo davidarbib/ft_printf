@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:25:55 by darbib            #+#    #+#             */
-/*   Updated: 2019/12/13 16:38:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/01/04 15:17:51 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void		init_g_convert()
 {
 	g_convert[(int)'c'] = c_convert; 
 	g_convert[(int)'s'] = s_convert; 
+/*
 	g_convert[(int)'p'] = p_convert; 
 	g_convert[(int)'d'] = d_convert; 
 	g_convert[(int)'i'] = i_convert; 
@@ -34,7 +35,12 @@ static void		init_g_convert()
 	g_convert[(int)'x'] = x_convert; 
 	g_convert[(int)'X'] = bigx_convert; 
 	g_convert[(int)'%'] = pct_convert; 
+*/
 }
+
+/*
+** managing sizes
+*/
 
 static char		*conv_size(const char **format)
 {
@@ -60,6 +66,10 @@ static char		*conv_size(const char **format)
 	}
 	return ("default");
 }
+
+/*
+** conversion input parsing to fill conversion state
+*/
 
 void			conv_parse(const char **format, va_list args, t_conv *conv)
 {
@@ -90,13 +100,15 @@ void			conv_parse(const char **format, va_list args, t_conv *conv)
 	conv->size = conv_size(format);
 }
 
+/*
+** if the conversion flag exists and is managed by current version
+** of printf, the adequate processing function is called
+** priority of minus over zero option flag is implemented here 
+*/
+
 int				conv_make(const char **format, va_list args, t_conv *conv,
 				t_buf *buf) 
 {
-	(void)format;
-	(void)args;
-	(void)conv;
-	(void)buf;
 	init_g_convert();
 	if (conv->flags == 3)
 		conv->flags = 1;
@@ -105,8 +117,10 @@ int				conv_make(const char **format, va_list args, t_conv *conv,
 		if (g_convert[(int)**format](buf, conv, args) == -1)
 			return (-1);
 	}
+	/*
 	else
 		no_convert(buf, conv, **format);
-	*format++;
+	*/
+	(*format)++;
 	return (0);
 }

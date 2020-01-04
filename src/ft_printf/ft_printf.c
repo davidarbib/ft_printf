@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 13:20:38 by darbib            #+#    #+#             */
-/*   Updated: 2019/12/13 16:38:32 by darbib           ###   ########.fr       */
+/*   Updated: 2019/12/19 16:54:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,10 @@ int			ft_printf(const char *format, ...)
 		{
 			buf_flush(&buf);
 			conv_parse(&format, args, &conv);
-/*
 			if ((conv_make(&format, args, &conv, &buf)) < 0)
 				return (-1);
-*/
 		}
-		if (buf.i == BUF_SIZE)
-			buf_flush(&buf);
+		check_full(&buf);
 	}
 	buf_flush(&buf);
 	va_end(args);

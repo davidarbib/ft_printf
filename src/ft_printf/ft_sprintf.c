@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 20:47:08 by darbib            #+#    #+#             */
-/*   Updated: 2019/12/10 22:26:19 by darbib           ###   ########.fr       */
+/*   Updated: 2019/12/19 17:27:38 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,33 @@
 ** jusqua arriver a un char non option ou chiffre
 */
 
+char		*g_buf_out;
+
 int			ft_sprintf(char *buf_out, const char *format, ...)
 {
 	va_list args;
 	t_buf	buf;
 	t_conv	conv;
 	
+	g_buf_out = buf_out;
 	if (!format || !*format)
 		return (0);
 	va_start(args, format);
-	sinit_buf(&buf, buf_out);
+	sinit_buf(&buf);
 	while (*format)
 	{
 		if (*format != '%')
 			buf.s[buf.i++] = *(format++);
 		else
 		{
-			sbuf_flush(&buf, buf_out);
+			sbuf_flush(&buf);
 			conv_parse(&format, args, &conv);
-/*
-			if ((conv_make(**format, args, &buf)) < 0)
+			if ((conv_make(&format, args, &conv, &buf)) < 0)
 				return (-1);
-*/
 		}
-		if (buf.i == BUF_SIZE)
-			sbuf_flush(&buf, buf_out);
+		scheck_full(&buf);
 	}
-	sbuf_flush(&buf, buf_out);
+	sbuf_flush(&buf);
 	va_end(args);
 	return (buf.count);
 }

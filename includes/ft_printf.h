@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 18:01:05 by darbib            #+#    #+#             */
-/*   Updated: 2019/12/13 16:38:34 by darbib           ###   ########.fr       */
+/*   Updated: 2020/01/04 15:24:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,21 @@ typedef struct	s_conv
 
 
 int		ft_printf(const char *format, ...);
+
 int		is_my_option(char c);
 char	is_true_option(char c);
+
 void	init_buf(t_buf *buf);
 void	buf_flush(t_buf *buf);
+void	check_full(t_buf *buf);
+void	write_into(t_buf *buf, char **str);
+
 void 	conv_parse(const char **format, va_list args, t_conv *current_conv);
+int		conv_make(const char **format, va_list args, t_conv *conv, t_buf *buf);
+
 int		atoi_spe(const char **str);
+void 	fill_buffer(t_buf *buf, size_t nb, char c);
+
 int		c_convert(t_buf *buf, t_conv *conv, va_list args); 
 int		s_convert(t_buf *buf, t_conv *conv, va_list args); 
 int		p_convert(t_buf *buf, t_conv *conv, va_list args); 
@@ -69,5 +78,6 @@ int		i_convert(t_buf *buf, t_conv *conv, va_list args);
 int		u_convert(t_buf *buf, t_conv *conv, va_list args); 
 int		x_convert(t_buf *buf, t_conv *conv, va_list args); 
 int		bigx_convert(t_buf *buf, t_conv *conv, va_list args); 
+int		pct_convert(t_buf *buf, t_conv *conv, va_list args); 
 int		no_convert(t_buf *buf, t_conv *conv, char c);
 #endif
