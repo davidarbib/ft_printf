@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sprintf.h                                       :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/07 20:44:57 by darbib            #+#    #+#             */
-/*   Updated: 2020/01/13 13:22:41 by darbib           ###   ########.fr       */
+/*   Created: 2020/01/14 21:56:11 by darbib            #+#    #+#             */
+/*   Updated: 2020/01/14 22:11:58 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SPRINTF_H
-# define FT_SPRINTF_H
+#include "../includes/libft.h"
 
-# include <stdarg.h>
-# include <stdlib.h>
-# include "ft_printf.h"
+char	*ft_utoa(unsigned int n)
+{
+	char	s_nb[12];
+	size_t	i;
+	char	tmp;
 
-# define BUFOUT_SIZE	100000000
-
-int		ft_sprintf(char *buf_out, const char *format, ...);
-
-#endif
+	s_nb[11] = 0;
+	i = 10;
+	if (n == 0)
+		s_nb[i--] = '0';
+	while ((n >= 1 && n > 0) || (n <= -1 && n < 0))
+	{
+		tmp = n % 10;
+		if (tmp < 0)
+			tmp = tmp * -1;
+		s_nb[i] = tmp + '0';
+		n /= 10;
+		i--;
+	}
+	return (ft_strdup(s_nb + i + 1));
+}

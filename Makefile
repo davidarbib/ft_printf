@@ -6,21 +6,36 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/01/04 15:14:32 by darbib           ###   ########.fr        #
+#    Updated: 2020/01/16 21:43:59 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = gcc
-CFLAGS = -g3 -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror 
+
+ifeq ($(DEBUG), 1)
+	CFLAGS += -g3
+endif
+
+ifeq ($(SANITY), 1)
+	CFLAGS += -fsanitize=address 
+endif
 
 # ------------------------------------------------------------------------------
 
 INC_DIR = includes
-HEADERS = $(INC_DIR)/ft_printf.h \
-	$(INC_DIR)/ft_sprintf.h  \
-	$(INC_DIR)/libft.h 
+
+HEADERS += $(INC_DIR)/libft.h 
+
+ifeq ($(TEST), 1)
+	HEADERS += $(INC_DIR)/ft_sprintf.h
+else
+	HEADERS += $(INC_DIR)/ft_printf.h
+endif
+
 OBJ = $(SRC:.c=.o)
+
 SRC = ft_atoi.c \
 	ft_bzero.c \
 	ft_calloc.c \
@@ -30,6 +45,10 @@ SRC = ft_atoi.c \
 	ft_isdigit.c \
 	ft_isprint.c \
 	ft_itoa.c \
+	ft_itoa_base.c \
+	ft_ptoa.c \
+	ft_utoa.c \
+	ft_utoa_base.c \
 	ft_memccpy.c \
 	ft_memchr.c \
 	ft_memcmp.c \
@@ -57,15 +76,23 @@ SRC = ft_atoi.c \
 	ft_toupper.c \
 	ft_printf.c \
 	ft_sprintf.c \
-	buffer.c \
-	sbuffer.c \
 	conversion.c \
-	ident.c \
 	utils.c \
-	sutils.c \
-	c_convert.c \
-	s_convert.c
+	nocs_convert.c \
+	di_convert.c \
+	u_convert.c \
+	x_convert.c \
+	p_convert.c
 
+ifeq ($(TEST), 1)
+	#shell echo "compiling test mode buffer.c"
+	SRC += sbuffer.c 
+	SRC += ft_sprintf.c 
+else
+	SRC += buffer.c
+	SRC += ft_printf.c 
+endif
+	
 PRINTF_DIR = ft_printf
 
 # ------------------------------------------------------------------------------

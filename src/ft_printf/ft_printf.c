@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 13:20:38 by darbib            #+#    #+#             */
-/*   Updated: 2019/12/19 16:54:57 by darbib           ###   ########.fr       */
+/*   Updated: 2020/01/15 22:47:54 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #include <stdio.h>
 
 /*
-** on lit le format, 
+** on lit le format,
 ** on deverse son contenu dans buffer
 ** si buffer plein ou % rencontre on flush le buffer
-** si % rencontre on continue a lire le format 
+** si % rencontre on continue a lire le format
 ** et on parse les options, LMC, precision
 ** jusqua arriver a un char non option ou chiffre
 */
@@ -31,7 +31,7 @@ int			ft_printf(const char *format, ...)
 	va_list args;
 	t_buf	buf;
 	t_conv	conv;
-	
+
 	if (!format || !*format)
 		return (0);
 	va_start(args, format);

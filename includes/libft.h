@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 10:15:53 by darbib            #+#    #+#             */
-/*   Updated: 2019/11/07 12:56:41 by darbib           ###   ########.fr       */
+/*   Updated: 2020/01/16 22:03:22 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_itoa(int n);
+char	*ft_itoa_base(int n, char *base);
+char	*ft_ptoa(unsigned long ptr);
+char	*ft_utoa(unsigned int n);
+char	*ft_utoa_base(unsigned int n, char *base);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 

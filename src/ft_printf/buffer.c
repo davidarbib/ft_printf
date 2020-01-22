@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:26:40 by darbib            #+#    #+#             */
-/*   Updated: 2020/01/04 15:30:23 by darbib           ###   ########.fr       */
+/*   Updated: 2020/01/15 22:45:43 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,14 @@ void	write_into(t_buf *buf, char **str)
 	}
 	free(*str);
 	*str = NULL;
+}
+
+void	fill_buffer(t_buf *buf, size_t nb, char c)
+{
+	while (nb > 0)
+	{
+		buf->s[buf->i++] = c;
+		check_full(buf);
+		nb--;
+	}
 }

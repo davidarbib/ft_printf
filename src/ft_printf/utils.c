@@ -6,62 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 22:27:42 by darbib            #+#    #+#             */
-/*   Updated: 2019/12/17 21:09:20 by darbib           ###   ########.fr       */
+/*   Updated: 2020/01/18 19:33:41 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
-
-void 		fill_buffer(t_buf *buf, size_t nb, char c)
-{
-	while (nb > 0)
-	{
-		buf->s[buf->i++] = c;
-		check_full(buf);
-		nb--;
-	}
-}
-
-static void	print_digits(int n, int base, size_t *i, char *s_nb)
-{
-	char	tmp;
-	char 	*s_base;
-	
-	s_base = "0123456789abcdef";
-	while ((n >= 1 && n > 0) || (n <= -1 && n < 0))
-	{
-		tmp = n % base;
-		if (tmp < 0)
-			tmp = tmp * -1;
-		s_nb[*i] = s_base[(int)tmp];
-		n /= base;
-		(*i)--;
-	}
-}
-
-char		*ft_itoa_base(int n, int base)
-{
-	char	s_nb[12];
-	char	sign;
-	size_t	i;
-
-	if (base <= 1)
-		return (NULL);
-	sign = 0;
-	if (n < 0)
-		sign = 1;
-	s_nb[11] = 0;
-	i = 10;
-	if (n == 0)
-		s_nb[i--] = '0';
-	print_digits(n, base, &i, s_nb);
-	if (sign)
-	{
-		s_nb[i--] = '-';
-	}
-	return (ft_strdup(s_nb + i + 1));
-}
 
 int		atoi_spe(const char **str)
 {
@@ -70,8 +20,8 @@ int		atoi_spe(const char **str)
 
 	nb = 0;
 	sign = 1;
-	while (**str && (**str == '\f' || **str == '\t' || **str == ' ' || **str == '\n'
-			|| **str == '\r' || **str == '\v'))
+	while (**str && (**str == '\f' || **str == '\t' || **str == ' '
+			|| **str == '\n' || **str == '\r' || **str == '\v'))
 		(*str)++;
 	if ((**str == '+' || **str == '-') && ft_isdigit(*(*str + 1)))
 	{
@@ -83,4 +33,61 @@ int		atoi_spe(const char **str)
 		nb = nb * 10 + *(*str)++ - '0';
 	(*str)--;
 	return (sign * nb);
+}
+
+long	atol_spe(const char **str)
+{
+	long long	nb;
+	signed char	sign;
+
+	nb = 0;
+	sign = 1;
+	while (**str && (**str == '\f' || **str == '\t' || **str == ' '
+			|| **str == '\n' || **str == '\r' || **str == '\v'))
+		(*str)++;
+	if ((**str == '+' || **str == '-') && ft_isdigit(*(*str + 1)))
+	{
+		if (**str == '-')
+			sign = -1;
+		(*str)++;
+	}
+	while (**str && ft_isdigit(**str))
+		nb = nb * 10 + *(*str)++ - '0';
+	(*str)--;
+	return ((long)(sign * nb));
+}
+
+void	add_option(char c, t_conv *conv)
+{
+	char	*s;
+	char	*p_s;
+	int		option;
+
+	s = OPTS_MY;
+	if ((p_s = ft_strchr(s, c)))
+	{
+		option = 1 << (p_s - s);
+		if (!(conv->flags & option))
+			conv->flags += option;
+	}
+}
+
+char	is_true_option(char c)
+{
+	if (ft_strchr(OPTS_TRUE, c))
+		return (1);
+	return (0);
+}
+
+int		star_post_process(t_conv *conv)
+{
+	if (conv->lmc == INTMIN)
+		return (-1);
+	if (conv->lmc < 0)
+	{
+		conv->lmc *= -1;
+		if (!(conv->flags & MINUS))
+			conv->flags += MINUS;
+	}
+	return (0);
 }
